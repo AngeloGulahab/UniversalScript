@@ -51,17 +51,28 @@ local Button = MainTab:CreateButton({
    end,
 })
 
+
+
+
+
+
 local VisualTab = Window:CreateTab("Visual", nil) -- Title, Image
 local Section = VisualTab:CreateSection("Visual")
 
 local Button = VisualTab:CreateButton({
-   Name = "Full Bright",
+   Name = "Fullbright",
    Callback = function()
-   game.Lighting.FogEnd = 100000
-game.Lighting.FogStart = 0
-game.Lighting.ClockTime = 14
-game.Lighting.Brightness = 2
-game.Lighting.GlobalShadows = true
+    local Light = game:GetService("Lighting")
+ 
+function dofullbright()
+Light.Ambient = Color3.new(1, 1, 1)
+Light.ColorShift_Bottom = Color3.new(1, 1, 1)
+Light.ColorShift_Top = Color3.new(1, 1, 1)
+end
+ 
+dofullbright()
+ 
+Light.LightingChanged:Connect(dofullbright)
    end,
 })
 
@@ -72,7 +83,7 @@ local Section = MiscTab:CreateSection("Misc")
 
 
 local Slider = MiscTab:CreateSlider({
-   Name = "Slider Example",
+   Name = "WalkSpeed",
    Range = {0, 300},
    Increment = 1,
    Suffix = "WalkSpeed",
