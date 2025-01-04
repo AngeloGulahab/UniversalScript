@@ -67,6 +67,24 @@ game.Lighting.GlobalShadows = true
 
 
 
+local MiscTab = Window:CreateTab("Misc", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Misc")
+
+
+local Slider = Tab:CreateSlider({
+   Name = "Slider Example",
+   Range = {0, 300},
+   Increment = 1,
+   Suffix = "WalkSpeed",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+   end,
+})
+
+
+
 local SettingsTab = Window:CreateTab("Settings", nil) -- Title, Image
 local Section = SettingsTab:CreateSection("Settings")
 
