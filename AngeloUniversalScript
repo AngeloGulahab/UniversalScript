@@ -1,47 +1,61 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-
 local Window = Rayfield:CreateWindow({
    Name = "Univrsal Script",
    Icon = 0, 
    LoadingTitle = "Univrsal",
    LoadingSubtitle = "by Angelo",
-   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+   Theme = "Default", 
 
    DisableRayfieldPrompts = false,
-   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+   DisableBuildWarnings = false, 
 
    ConfigurationSaving = {
       Enabled = false,
-      FolderName = nil, -- Create a custom folder for your hub/game
+      FolderName = nil, 
       FileName = "Big Hub"
    },
 
    Discord = {
-      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+      Enabled = false, 
+      Invite = "noinvitelink", 
+      RememberJoins = true 
    },
 
-   KeySystem = false, -- Set this to true to use our key system
+   KeySystem = false, 
    KeySettings = {
       Title = "Untitled",
       Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
-      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Note = "No method of obtaining the key is provided", 
+      FileName = "Key", 
+      SaveKey = true, 
+      GrabKeyFromSite = false, 
+      Key = {"Hello"} 
    }
 })
 
 
 
-
-local MainTab = Window:CreateTab("Home", nil) -- Title, Image
+-- Tabs
+local MainTab = Window:CreateTab("Home", nil) 
 local MainSection = MainTab:CreateSection("Main")
 
+local VisualTab = Window:CreateTab("Visual", nil) 
+local Section = VisualTab:CreateSection("Visual")
 
+local MiscTab = Window:CreateTab("Misc", nil) 
+local Section = MiscTab:CreateSection("Misc")
+
+local SettingsTab = Window:CreateTab("Settings", nil) 
+local Section = SettingsTab:CreateSection("Settings")
+
+
+
+
+
+
+
+-- Toggles
 local Button = MainTab:CreateButton({
    Name = "Infinite jump",
    Callback = function()
@@ -50,14 +64,6 @@ local Button = MainTab:CreateButton({
     end)
    end,
 })
-
-
-
-
-
-
-local VisualTab = Window:CreateTab("Visual", nil) -- Title, Image
-local Section = VisualTab:CreateSection("Visual")
 
 local Button = VisualTab:CreateButton({
    Name = "Fullbright",
@@ -76,40 +82,25 @@ Light.LightingChanged:Connect(dofullbright)
    end,
 })
 
-
-
-local MiscTab = Window:CreateTab("Misc", nil) -- Title, Image
-local Section = MiscTab:CreateSection("Misc")
-
-
 local Slider = MiscTab:CreateSlider({
    Name = "WalkSpeed",
    Range = {0, 300},
    Increment = 1,
    Suffix = "WalkSpeed",
    CurrentValue = 16,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider1", 
    Callback = function(Value)
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
    end,
 })
 
-
-
-local SettingsTab = Window:CreateTab("Settings", nil) -- Title, Image
-local Section = SettingsTab:CreateSection("Settings")
-
-
-
 local Button = SettingsTab:CreateButton({
    Name = "Anti afk",
    Callback = function()
    game:service'Players'.LocalPlayer.Idled:connect(function()
-                end) -- The function that takes place when the button is pressed
+                end) 
    end,
 })
-
-
 
 local Button = SettingsTab:CreateButton({
    Name = "Server Hop Low Player",
@@ -131,6 +122,19 @@ local Server, Next; repeat
    Next = Servers.nextPageCursor
 until Server
 
-TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)  -- The function that takes place when the button is pressed
+TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)  
    end,
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
