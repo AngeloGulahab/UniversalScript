@@ -67,11 +67,11 @@ game.Lighting.GlobalShadows = true
 
 
 
-local MiscTab = Window:CreateTab("Misc", 4483362458) -- Title, Image
-local Section = Tab:CreateSection("Misc")
+local MiscTab = Window:CreateTab("Misc", nil) -- Title, Image
+local Section = MiscTab:CreateSection("Misc")
 
 
-local Slider = Tab:CreateSlider({
+local Slider = MiscTab:CreateSlider({
    Name = "Slider Example",
    Range = {0, 300},
    Increment = 1,
