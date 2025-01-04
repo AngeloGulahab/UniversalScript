@@ -3,7 +3,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "Univrsal Script",
-   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   Icon = 0, 
    LoadingTitle = "Univrsal",
    LoadingSubtitle = "by Angelo",
    Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
@@ -51,6 +51,19 @@ local Button = MainTab:CreateButton({
    end,
 })
 
+local VisualTab = Window:CreateTab("Visual", nil) -- Title, Image
+local Section = VisualTab:CreateSection("Visual")
+
+local Button = VisualTab:CreateButton({
+   Name = "Full Bright",
+   Callback = function()
+   game.Lighting.FogEnd = 100000
+game.Lighting.FogStart = 0
+game.Lighting.ClockTime = 14
+game.Lighting.Brightness = 2
+game.Lighting.GlobalShadows = true
+   end,
+})
 
 
 
