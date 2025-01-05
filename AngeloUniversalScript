@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Univrsal Script",
+   Name = "Universal Script",
    Icon = 0, 
    LoadingTitle = "Univrsal",
    LoadingSubtitle = "by Angelo",
@@ -24,13 +24,13 @@ local Window = Rayfield:CreateWindow({
 
    KeySystem = false, 
    KeySettings = {
-      Title = "Untitled",
+      Title = "Key System | Not available",
       Subtitle = "Key System",
       Note = "No method of obtaining the key is provided", 
-      FileName = "Key", 
-      SaveKey = true, 
+      FileName = ".Key", 
+      SaveKey = false, 
       GrabKeyFromSite = false, 
-      Key = {"Hello"} 
+      Key = {"5429"} 
    }
 })
 
