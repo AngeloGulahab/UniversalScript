@@ -82,16 +82,37 @@ Light.LightingChanged:Connect(dofullbright)
    end,
 })
 
-local Slider = MiscTab:CreateSlider({
-   Name = "WalkSpeed",
-   Range = {0, 300},
-   Increment = 1,
-   Suffix = "WalkSpeed",
-   CurrentValue = 16,
-   Flag = "Slider1", 
-   Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
-   end,
+local speed = 16 
+local isSpeedEnabled = false
+
+local Toggle = MiscTab:CreateToggle({
+    Name = "WalkSpeed",
+    CurrentValue = isSpeedEnabled,
+    Flag = "SpeedToggle", 
+    Callback = function(value)
+        isSpeedEnabled = value
+        if isSpeedEnabled then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+        else
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        end
+    end,
+})
+
+
+local Toggle = MiscTab:CreateSlider({
+    Name = "WalkSpeed",
+    Range = {16, 300}, 
+    Increment = 1, 
+    Suffix = "Speed", 
+    CurrentValue = speed,
+    Flag = "SpeedSlider", 
+    Callback = function(value)
+        speed = value
+        if isSpeedEnabled then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+        end
+    end,
 })
 
 local Button = SettingsTab:CreateButton({
@@ -125,8 +146,6 @@ until Server
 TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)  
    end,
 })
-
-
 
 
 
