@@ -66,7 +66,46 @@ local Button = MainTab:CreateButton({
    end,
 })
 
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
 
+local jumpHeight = 50
+local isHeightJump = false
+
+local Toggle = MainTab:CreateToggle({
+    Name = "Jump Height",
+    CurrentValue = false,
+    Flag = "jumpToggle",
+    Callback = function(value)
+       isHeightJump = value
+        if isHeightJump then
+            humanoid.JumpPower = jumpHeight
+        else
+            humanoid.JumpPower = 50
+        end
+    end,
+})
+
+local Slider = MainTab:CreateSlider({
+    Name = "Jump Height",
+    Range = {50, 200},
+    Increment = 1,
+    Suffix = "px",
+    CurrentValue = jumpHeight,
+    Flag = "jumpHeightSlider",
+    Callback = function(value)
+        jumpHeight = value
+       if isHeightJump then
+          humanoid.JumpPower = jumpHeight
+        end
+    end,
+})
+
+player.CharacterAdded:Connect(function(newCharacter)
+    character = newCharacter
+    humanoid = character:WaitForChild("Humanoid")
+end)
 
 
 -- Visual
@@ -110,7 +149,7 @@ local Toggle = MiscTab:CreateToggle({
 })
 
 
-local Toggle = MiscTab:CreateSlider({
+local Slider = MiscTab:CreateSlider({
     Name = "WalkSpeed",
     Range = {16, 300}, 
     Increment = 1, 
