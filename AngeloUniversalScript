@@ -34,29 +34,10 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
+--Infinite jump
+local MainTab = Window:CreateTab("Main Menu", nil) 
+local MainSection = MainTab:CreateSection("All Menu")
 
-
--- Tabs
-local MainTab = Window:CreateTab("Home", nil) 
-local MainSection = MainTab:CreateSection("Main")
-
-local VisualTab = Window:CreateTab("Visual", nil) 
-local Section = VisualTab:CreateSection("Visual")
-
-local MiscTab = Window:CreateTab("Misc", nil) 
-local Section = MiscTab:CreateSection("Misc")
-
-local SettingsTab = Window:CreateTab("Settings", nil) 
-local Section = SettingsTab:CreateSection("Settings")
-
-local ScriptTab = Window:CreateTab("Other Script", nil)
-local Section = ScriptTab:CreateSection("Other Script")
-
-
-
-
-
--- Main
 local Button = MainTab:CreateButton({
    Name = "Infinite jump",
    Callback = function()
@@ -93,7 +74,7 @@ local Slider = MainTab:CreateSlider({
     Increment = 1,
     Suffix = "px",
     CurrentValue = jumpHeight,
-    Flag = "jumpHeightSlider",
+    Flag = "JumpHeightSlider",
     Callback = function(value)
         jumpHeight = value
        if isHeightJump then
@@ -106,35 +87,13 @@ player.CharacterAdded:Connect(function(newCharacter)
     character = newCharacter
     humanoid = character:WaitForChild("Humanoid")
 end)
+-- Infinitw Jump end
 
-
--- Visual
-local Button = VisualTab:CreateButton({
-   Name = "Fullbright",
-   Callback = function()
-    local Light = game:GetService("Lighting")
- 
-function dofullbright()
-Light.Ambient = Color3.new(1, 1, 1)
-Light.ColorShift_Bottom = Color3.new(1, 1, 1)
-Light.ColorShift_Top = Color3.new(1, 1, 1)
-end
- 
-dofullbright()
- 
-Light.LightingChanged:Connect(dofullbright)
-   end,
-})
-
-
-
-
-
--- Misc
+-- Speed
 local speed = 16 
 local isSpeedEnabled = false
 
-local Toggle = MiscTab:CreateToggle({
+local Toggle = MainTab:CreateToggle({
     Name = "WalkSpeed",
     CurrentValue = isSpeedEnabled,
     Flag = "SpeedToggle", 
@@ -149,7 +108,7 @@ local Toggle = MiscTab:CreateToggle({
 })
 
 
-local Slider = MiscTab:CreateSlider({
+local Slider = MainTab:CreateSlider({
     Name = "WalkSpeed",
     Range = {16, 300}, 
     Increment = 1, 
@@ -163,20 +122,45 @@ local Slider = MiscTab:CreateSlider({
         end
     end,
 })
+-- Spees end
 
+-- Full Bright
+local isBright = false
 
+local function SetFullBright(enabled)
+    if enabled then
+        game:GetService("Lighting").Brightness = 2
+        game:GetService("Lighting").GlobalShadows = false
+        game:GetService("Lighting").Ambient = Color3.fromRGB(255, 255, 255)
+    else
+        game:GetService("Lighting").Brightness = 1
+        game:GetService("Lighting").GlobalShadows = true
+        game:GetService("Lighting").Ambient = Color3.fromRGB(100, 100, 100)
+    end
+end
 
+local Slider = MainTab:CreateToggle({
+   Name = "Full Bright",
+   CurrentValue = false,
+   Callback = function(Value)
+       isBright = Value
+       SetFullBright(isBright)
+   end
+})
+-- Full Bright end
 
--- Settings
-local Button = SettingsTab:CreateButton({
+-- Antiafk
+local Button = MainTab:CreateButton({
    Name = "Anti afk",
    Callback = function()
    game:service'Players'.LocalPlayer.Idled:connect(function()
                 end) 
    end,
 })
+-- Antiafk end
 
-local Button = SettingsTab:CreateButton({
+-- Serverhoplow
+local Button = MainTab:CreateButton({
    Name = "Server Hop Low Player",
    Callback = function()
    local Http = game:GetService("HttpService")
@@ -199,6 +183,7 @@ until Server
 TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)  
    end,
 })
+-- Serverhoplow end
 
 
 
@@ -206,13 +191,10 @@ TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
 
 
 
--- Script
-local Button = ScriptTab:CreateButton({
-   Name = "Redz Hub Blox Fruit",
-   Callback = function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()
-   end,
-})
+
+
+
+
 
 
 
