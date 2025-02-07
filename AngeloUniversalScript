@@ -34,10 +34,11 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
---Infinite jump
+
 local MainTab = Window:CreateTab("Main Menu", nil) 
 local MainSection = MainTab:CreateSection("All Menu")
 
+local Section = MainTab:CreateSection("Infinite Jump")
 local Button = MainTab:CreateButton({
    Name = "Infinite jump",
    Callback = function()
@@ -47,6 +48,7 @@ local Button = MainTab:CreateButton({
    end,
 })
 
+local Section = MainTab:CreateSection("Jump Height toggle and Slider")
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
@@ -87,9 +89,8 @@ player.CharacterAdded:Connect(function(newCharacter)
     character = newCharacter
     humanoid = character:WaitForChild("Humanoid")
 end)
--- Infinitw Jump end
 
--- Speed
+local Section = MwinTab:CreateSection("WalkSpeed")
 local speed = 16 
 local isSpeedEnabled = false
 
@@ -122,9 +123,8 @@ local Slider = MainTab:CreateSlider({
         end
     end,
 })
--- Spees end
 
--- Full Bright
+local Section = MainTab:CreateSection("Full Bright Toggle")
 local isBright = false
 
 local function SetFullBright(enabled)
@@ -139,7 +139,7 @@ local function SetFullBright(enabled)
     end
 end
 
-local Slider = MainTab:CreateToggle({
+local Toggle = MainTab:CreateToggle({
    Name = "Full Bright",
    CurrentValue = false,
    Callback = function(Value)
@@ -147,9 +147,9 @@ local Slider = MainTab:CreateToggle({
        SetFullBright(isBright)
    end
 })
--- Full Bright end
 
--- Antiafk
+
+local Section = MainTab:CreateSection("Anti Afk")
 local Button = MainTab:CreateButton({
    Name = "Anti afk",
    Callback = function()
@@ -157,9 +157,8 @@ local Button = MainTab:CreateButton({
                 end) 
    end,
 })
--- Antiafk end
 
--- Serverhoplow
+local Section = MainTab:CreateSection("ServerHop Low Player")
 local Button = MainTab:CreateButton({
    Name = "Server Hop Low Player",
    Callback = function()
@@ -183,7 +182,7 @@ until Server
 TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)  
    end,
 })
--- Serverhoplow end
+
 
 
 
