@@ -90,7 +90,7 @@ player.CharacterAdded:Connect(function(newCharacter)
     humanoid = character:WaitForChild("Humanoid")
 end)
 
-local Section = MwinTab:CreateSection("WalkSpeed")
+local Section = MainTab:CreateSection("WalkSpeed")
 local speed = 16 
 local isSpeedEnabled = false
 
